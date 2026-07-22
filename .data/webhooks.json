@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "event": "payment.initiated",
+    "payload": {
+      "paymentId": "pay_1"
+    }
+  }
+]

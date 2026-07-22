@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": "pay_1",
+    "merchant_id": "m_1001",
+    "amount_minor": 19900,
+    "currency": "INR",
+    "payment_method": "card",
+    "status": "initiated",
+    "amount": 199.0,
+    "method": "card",
+    "routing": {
+      "primaryAcquirer": "swift-pay-acquirer",
+      "secondaryAcquirer": "backup-acquirer"
+    },
+    "idempotency_key": "test-key-001"
+  }
+]

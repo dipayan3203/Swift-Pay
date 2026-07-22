@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "id": "m_1001",
+    "legal_name": "Acme Commerce",
+    "status": "active",
+    "risk_band": "low",
+    "email": "ops@acme.example",
+    "kyc_status": "approved",
+    "metadata": {}
+  },
+  {
+    "id": "m_1002",
+    "legal_name": "Bright Goods",
+    "status": "pending_kyc",
+    "risk_band": "medium",
+    "email": "ops@bright.example",
+    "kyc_status": "pending",
+    "metadata": {}
+  },
+  {
+    "id": "m_1003",
+    "legal_name": "Zeta Retail",
+    "status": "active",
+    "risk_band": "low",
+    "email": "ops@zeta.example",
+    "kyc_status": "approved",
+    "metadata": {}
+  }
+]
