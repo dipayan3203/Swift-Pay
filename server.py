@@ -403,8 +403,8 @@ class SwiftPayHandler(BaseHTTPRequestHandler):
 
 def run_server(port=3000):
     DATA_DIR.mkdir(exist_ok=True)
-    server = ThreadingHTTPServer(("127.0.0.1", int(port)), SwiftPayHandler)
-    print(f"Swift Pay API running on http://127.0.0.1:{port}")
+    server = ThreadingHTTPServer(("0.0.0.0", int(port)), SwiftPayHandler)
+    print(f"Swift Pay API running on http://0.0.0.0:{port}")
     server.serve_forever()
 
 
