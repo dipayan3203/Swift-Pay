@@ -1,0 +1,10 @@
+{
+  "name": "swift-pay",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "python server.py",
+    "start": "python server.py",
+    "test": "python -m pytest -q tests/test_server.py"
+  }
+}

@@ -1,0 +1,4 @@
+[
+  "tests/test_server.py::PythonBackendTests::test_health_endpoint",
+  "tests/test_server.py::PythonBackendTests::test_payment_creation"
+]
