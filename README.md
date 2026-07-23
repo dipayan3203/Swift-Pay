@@ -25,3 +25,56 @@ Swift Pay is a comprehensive payments platform designed for card payments, UPI, 
 1. Provision the required infrastructure services.
 2. Deploy the services with container orchestration.
 3. Review the design documents above for implementation details.
+
+```
+Swift Pay
+├─ .data
+│  ├─ disputes.json
+│  ├─ merchants.json
+│  ├─ payments.json
+│  ├─ payouts.json
+│  ├─ plans.json
+│  ├─ refunds.json
+│  ├─ settlements.json
+│  ├─ subscriptions.json
+│  └─ webhooks.json
+├─ .env
+├─ .pytest_cache
+│  └─ v
+│     └─ cache
+│        ├─ nodeids
+│        └─ stepwise
+├─ app
+│  ├─ api
+│  ├─ auth
+│  ├─ database
+│  ├─ main.py
+│  ├─ middleware
+│  ├─ models
+│  ├─ routes
+│  ├─ schemas
+│  ├─ services
+│  └─ utils
+├─ docker-compose.yml
+├─ Dockerfile
+├─ handler.py
+├─ http_utils.py
+├─ package.json
+├─ payments.py
+├─ payment_validation.py
+├─ public
+│  └─ index.html
+├─ README.md
+├─ requirements.txt
+├─ server.py
+├─ storage.py
+├─ tests
+│  ├─ test_server.py
+│  └─ __pycache__
+│     ├─ test_server.cpython-311-pytest-8.3.4.pyc
+│     └─ test_server.cpython-311.pyc
+├─ webhook_service.py
+└─ __pycache__
+   └─ server.cpython-311.pyc
+
+```

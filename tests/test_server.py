@@ -14,7 +14,7 @@ class PythonBackendTests(unittest.TestCase):
         cls.repo_root = Path(__file__).resolve().parents[1]
         cls.port = cls._find_free_port()
         cls.process = subprocess.Popen(
-            [sys.executable, str(cls.repo_root / "server.py"), "--port", str(cls.port)],
+            [sys.executable, str(cls.repo_root / "app" / "main.py"), "--port", str(cls.port)],
             cwd=cls.repo_root,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
