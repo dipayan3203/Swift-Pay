@@ -9,6 +9,7 @@ if str(ROOT) not in sys.path:
 from fastapi import FastAPI
 
 from app.api.v1.auth import router as auth_router
+from app.api.v1.merchant import router as merchant_router
 
 app = FastAPI(
     title="Swift Pay API",
@@ -16,6 +17,7 @@ app = FastAPI(
 )
 
 app.include_router(auth_router)
+app.include_router(merchant_router)
 
 
 @app.get("/")
