@@ -65,3 +65,6 @@ class Customer(Base):
     merchant: Mapped["Merchant"] = relationship(
         back_populates="customers",
     )
+    orders: Mapped[list["Order"]] = relationship(
+    back_populates="customer",
+)
