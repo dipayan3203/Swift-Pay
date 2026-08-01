@@ -6,18 +6,18 @@ from sqlalchemy import (
     BigInteger,
     DateTime,
     ForeignKey,
+    Boolean,
 )
 
 from sqlalchemy.dialects.postgresql import UUID, JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
-from sqlalchemy import Enum
-from app.core.enums import OrderStatus
+
 from app.database.base import Base
 
 
-class Order(Base):
-    __tablename__ = "orders"
+class Payment(Base):
+    __tablename__ = "payments"
 
     id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True),
@@ -31,31 +31,20 @@ class Order(Base):
         nullable=False,
     )
 
-    customer_id: Mapped[uuid.UUID | None] = mapped_column(
+    order_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True),
-        ForeignKey("customers.id", ondelete="SET NULL"),
-        nullable=True,
+        ForeignKey("orders.id", ondelete="CASCADE"),
+        nullable=False,
     )
 
-    order_id: Mapped[str] = mapped_column(
+    payment_id: Mapped[str] = mapped_column(
         String(40),
         unique=True,
-        nullable=False,
         index=True,
+        nullable=False,
     )
 
     amount: Mapped[int] = mapped_column(
-        BigInteger,
-        nullable=False,
-    )
-
-    amount_paid: Mapped[int] = mapped_column(
-        BigInteger,
-        default=0,
-        nullable=False,
-    )
-
-    amount_due: Mapped[int] = mapped_column(
         BigInteger,
         nullable=False,
     )
@@ -66,15 +55,21 @@ class Order(Base):
         nullable=False,
     )
 
-    status: Mapped[OrderStatus] = mapped_column(
-    Enum(OrderStatus, name="order_status"),
-    default=OrderStatus.CREATED,
-    nullable=False,
-)
+    status: Mapped[str] = mapped_column(
+        String(20),
+        default="CREATED",
+        nullable=False,
+    )
 
-    receipt: Mapped[str | None] = mapped_column(
-        String(255),
+    payment_method: Mapped[str | None] = mapped_column(
+        String(30),
         nullable=True,
+    )
+
+    captured: Mapped[bool] = mapped_column(
+        Boolean,
+        default=False,
+        nullable=False,
     )
 
     notes: Mapped[dict | None] = mapped_column(
@@ -93,15 +88,12 @@ class Order(Base):
         onupdate=func.now(),
     )
 
-    merchant: Mapped["Merchant"] = relationship(
-        back_populates="orders",
+    merchant = relationship(
+        "Merchant",
+        back_populates="payments",
     )
 
-    customer: Mapped["Customer"] = relationship(
-        back_populates="orders",
+    order = relationship(
+        "Order",
+        back_populates="payments",
     )
-    
-    payments: Mapped[list["Payment"]] = relationship(
-    back_populates="order",
-    cascade="all, delete-orphan",
-)

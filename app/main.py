@@ -12,7 +12,7 @@ from app.api.v1.auth import router as auth_router
 from app.api.v1.merchant import router as merchant_router
 from app.api.v1.api_keys import router as api_keys_router
 from app.api.v1.order import router as order_router
-
+from app.api.v1.payment import router as payment_router
 
 app = FastAPI(
     title="Swift Pay API",
@@ -25,7 +25,7 @@ app.include_router(api_keys_router)
 app.include_router(auth_router)
 app.include_router(merchant_router)
 app.include_router(order_router)
-
+app.include_router(payment_router)
 @app.get("/")
 def root():
     return {

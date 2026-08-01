@@ -64,4 +64,9 @@ class Merchant(Base):
     orders: Mapped[list["Order"]] = relationship(
     back_populates="merchant",
     cascade="all, delete-orphan",
-)
+    )
+    
+    payments: Mapped[list["Payment"]] = relationship(
+    back_populates="merchant",
+    cascade="all, delete-orphan",
+    )
