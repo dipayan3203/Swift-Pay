@@ -3,7 +3,7 @@ import secrets
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from app.models.order import Order
+
 from app.models.payment import Payment
 from app.models.merchant import Merchant
 
@@ -79,8 +79,7 @@ def get_payment(
     merchant: Merchant,
     payment_id: str,
 ):
-
-    return (
+    payment = (
         db.query(Payment)
         .filter(
             Payment.payment_id == payment_id,
@@ -88,6 +87,16 @@ def get_payment(
         )
         .first()
     )
+
+    if payment is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Payment not found",
+        )
+
+    return payment
+
+
 def capture_payment(
     db: Session,
     merchant: Merchant,

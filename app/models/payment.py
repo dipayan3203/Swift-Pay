@@ -101,3 +101,8 @@ class Payment(Base):
     order: Mapped["Order"] = relationship(
         back_populates="payments",
     )
+
+    refunds: Mapped[list["Refund"]] = relationship(
+    back_populates="payment",
+    cascade="all, delete-orphan",
+    )

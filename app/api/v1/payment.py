@@ -71,16 +71,8 @@ def get_payment_endpoint(
         merchant=merchant,
         payment_id=payment_id,
     )
+    
 
-    if payment is None:
-        from fastapi import HTTPException
-
-        raise HTTPException(
-            status_code=404,
-            detail="Payment not found",
-        )
-
-    return payment
 @router.post(
     "/{payment_id}/capture",
     response_model=PaymentResponse,
