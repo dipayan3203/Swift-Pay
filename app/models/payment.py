@@ -7,8 +7,10 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Boolean,
+    Enum,
 )
 
+from app.core.enums import PaymentStatus, PaymentMethod
 from sqlalchemy.dialects.postgresql import UUID, JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
@@ -55,21 +57,25 @@ class Payment(Base):
         nullable=False,
     )
 
-    status: Mapped[str] = mapped_column(
-        String(20),
-        default="CREATED",
-        nullable=False,
+    status: Mapped[PaymentStatus] = mapped_column(
+    Enum(PaymentStatus, name="payment_status"),
+    default=PaymentStatus.CREATED,
+    nullable=False,
     )
 
-    payment_method: Mapped[str | None] = mapped_column(
-        String(30),
-        nullable=True,
+    payment_method: Mapped[PaymentMethod | None] = mapped_column(
+    Enum(PaymentMethod, name="payment_method"),
+    nullable=True,
     )
 
     captured: Mapped[bool] = mapped_column(
         Boolean,
         default=False,
         nullable=False,
+    )
+    captured_at: Mapped[datetime | None] = mapped_column(
+      DateTime(timezone=True),
+      nullable=True,
     )
 
     notes: Mapped[dict | None] = mapped_column(
@@ -88,12 +94,10 @@ class Payment(Base):
         onupdate=func.now(),
     )
 
-    merchant = relationship(
-        "Merchant",
+    merchant: Mapped["Merchant"] = relationship(
         back_populates="payments",
     )
 
-    order = relationship(
-        "Order",
+    order: Mapped["Order"] = relationship(
         back_populates="payments",
     )

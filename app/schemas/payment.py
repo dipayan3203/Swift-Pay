@@ -3,7 +3,7 @@ from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict
-
+from app.core.enums import PaymentStatus, PaymentMethod
 
 class PaymentCreate(BaseModel):
     order_id: str
@@ -23,9 +23,9 @@ class PaymentResponse(BaseModel):
     amount: int
     currency: str
 
-    status: str
-    payment_method: Optional[str]
-    captured: bool
+    status:PaymentStatus
+    payment_method:PaymentMethod | None
+    captured_at: datetime | None
 
     notes: Optional[dict]
 

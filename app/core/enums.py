@@ -22,6 +22,15 @@ class PaymentStatus(str, Enum):
     PARTIALLY_REFUNDED = "PARTIALLY_REFUNDED"
 
 
+class PaymentMethod(str, Enum):
+    CARD = "CARD"
+    UPI = "UPI"
+    NETBANKING = "NETBANKING"
+    WALLET = "WALLET"
+    EMI = "EMI"
+    BANK_TRANSFER = "BANK_TRANSFER"
+
+
 class RefundStatus(str, Enum):
     PENDING = "PENDING"
     PROCESSED = "PROCESSED"

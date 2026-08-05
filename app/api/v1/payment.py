@@ -16,6 +16,7 @@ from app.services.payment_service import (
     create_payment,
     list_payments,
     get_payment,
+    capture_payment,
 )
 
 router = APIRouter(
@@ -80,3 +81,17 @@ def get_payment_endpoint(
         )
 
     return payment
+@router.post(
+    "/{payment_id}/capture",
+    response_model=PaymentResponse,
+)
+def capture_payment_endpoint(
+    payment_id: str,
+    db: Session = Depends(get_db),
+    merchant: Merchant = Depends(get_current_merchant),
+):
+    return capture_payment(
+        db=db,
+        merchant=merchant,
+        payment_id=payment_id,
+    )
