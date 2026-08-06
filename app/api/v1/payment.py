@@ -71,6 +71,8 @@ def get_payment_endpoint(
         merchant=merchant,
         payment_id=payment_id,
     )
+
+    return payment
     
 
 @router.post(
@@ -87,3 +89,4 @@ def capture_payment_endpoint(
         merchant=merchant,
         payment_id=payment_id,
     )
+
